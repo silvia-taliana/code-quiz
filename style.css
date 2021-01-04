@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz</title>
+    <!-- style sheet links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="startPage">
+        <!-- First page, user starts quiz here -->
+        <h1>Coding Quiz Challenge</h1>
+        <p>Answer the following multiple choice questions by clicking on the answer you think is correct. If you get
+            an
+            answer wrong, you will have a time penalty of 10 seconds. Answer all the questions before the time is
+            up!
+        </p>
+        <div id="startButton"><button>Start Quiz</button></div>
+    </div>
+
+    <header>
+        <div class="viewHighScore"><button>View Highscores</button></div>
+        <div class="timer">
+            <div class="timeText">Time Left</div>
+            <div class="timerSec">120</div>
+        </div>
+    </header>
+
+    <div class="quizBox">
+        <section>
+            <div class="queText">
+                <span>Question</span>
+            </div>
+            <div class="optionList">
+                <button class="btn">Answer A</button>
+                <button class="btn">Answer B</button>
+                <button class="btn">Answer C</button>
+                <button class="btn">Answer D</button>
+            </div>
+
+            <!--<div class="optionList">
+                <input type="checkbox" class="btn-check" id="btn-check-1-outlined" checked autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btn-check-1-outlined">1. Hyper Text
+                    Preprocessor</label><br>
+            </div>
+            <div class="optionList">
+                <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btn-check-2-outlined">2. Hyper Text Markup
+                    Language</label><br>
+            </div>
+            <div class="optionList">
+                <input type="checkbox" class="btn-check" id="btn-check-3-outlined" checked autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btn-check-3-outlined">3. Hyper Text Multiple
+                    Language</label><br>
+            </div>
+            <div class="optionList">
+                <input type="checkbox" class="btn-check" id="btn-check-4-outlined" checked autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btn-check-4-outlined">4. Hyper Tool Multi
+                    Language</label><br>
+            </div>-->
+        </section>
+        <section>
+            <div class="answer">
+                <span>Correct!</span>
+                <span>Incorrect!</span>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- javascript links -->
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+
+<!-- FIRST GO on my own haha it sucks but could be useful :/ 
+    <div>
+    question 1
+    <h2>Quiz question 1</h2>
+    <ul class="button">
+        <li>Choice 1</li>
+        <li class="correct">Choice 2</li>
+        <li>Choice 3</li>
+        <li>Choice 4</li>
+    </ul>
+</div>
+
+<div>
+    question 2
+    <h2>Quiz question 2</h2>
+    <ul class="button">
+        <li>Choice 1</li>
+        <li>Choice 2</li>
+        <li>Choice 3</li>
+        <li class="correct">Choice 4</li>
+    </ul>
+</div>
+
+<div>
+    question 3
+    <h2>Quiz question 3</h2>
+    <ul class="button">
+        <li class="correct">Choice 1</li>
+        <li>Choice 2</li>
+        <li>Choice 3</li>
+        <li>Choice 4</li>
+    </ul>
+</div>
+
+<div>
+    question 4
+    <h2>Quiz question 4</h2>
+    <ul class="button">
+        <li>Choice 1</li>
+        <li class="correct">Choice 2</li>
+        <li>Choice 3</li>
+        <li>Choice 4</li>
+    </ul>
+</div>
+
+<div>
+    question 5
+    <h2>Quiz question 5</h2>
+    <ul class="button">
+        <li>Choice 1</li>
+        <li>Choice 2</li>
+        <li class="correct">Choice 3</li>
+        <li>Choice 4</li>
+    </ul>
+</div>
+
+<div>
+    question 6
+    <h2>Quiz question 6</h2>
+    <ul class="button">
+        <li>Choice 1</li>
+        <li>Choice 2</li>
+        <li>Choice 3</li>
+        <li class="correct">Choice 4</li>
+    </ul>
+</div>
+
+<div>
+    end of quiz page, user imputs initials
+    <h2>All Done!</h2>
+    <p>Please enter your initials below</p>
+</div>
+
+<div>
+    score page
+    <h2>Highscores</h2>
+    scores will show here alongside initials in list form
+</div> -->
+
+</html>
