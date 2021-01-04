@@ -13,64 +13,14 @@ startButton.addEventListener("click", () => {
 })
 
 
-// var queCount = 0;
-// var btn = quizBox.querySelector(".optionList .btn");
+var queCount = 0;
+var score = 0;
+var btn = quizBox.querySelector(".optionList .btn");
 
 // btn.onclick = () => {
 //     queCount++;
 //     showQuestions(queCount);
 // }
-
-// function showQuestions(index) {
-//     var queText = document.querySelector(".queText");
-//     var optionList = document.querySelector(".optionList");
-//     var queTag = '<span>' + questions[index].question + '</span>';
-//     var optionTag = '<button class="btn">' + questions[index].options[0] + '</button>'
-//         + '<button class="btn">' + questions[index].options[1] + '</button>'
-//         + '<button class="btn">' + questions[index].options[2] + '</button>'
-//         + '<button class="btn">' + questions[index].options[3] + '</button>';
-//     queText.innerHTML = queTag;
-//     optionList.innerHTML = optionTag;
-//     var score = 0;
-//     for (var i = 0; i < questions.length; i++) {
-//         var response = questions[i].options;
-//         if (response == questions[i].answer) {
-//             score++;
-//             alert("Correct!");
-//         } else {
-//             alert("Incorrect");
-//         }
-//     }
-//     alert("You got " + score + "/" + questions.length);
-//     console.log(response)
-}
-
-// function showQuestions(index) {
-//     for (var i = 0; i < questions.length; i++) {
-//         var response = window.questions(questions[i].question);
-//         if (response == questions[i].answer) {
-//             score++;
-//             alert("Correct!");
-//         } else {
-//             alert("Incorrect");
-//         }
-//     }
-// }
-
-/*
-// getting questions and answers from array
-function showQuestions(index) {
-    var queText = document.querySelector(".queText");
-    var optionList = document.querySelector(".optionList");
-    let queTag = '<span>' + questions[index].question + '</span>';
-    let optionTag = '<div class="optionList">' + questions[index].options[0] + '<label></label></div>'
-        + '<div class="optionList">' + questions[index].options[1] + '<span></span></div>'
-        + '<div class="optionList">' + questions[index].options[2] + '<span></span></div>'
-        + '<div class="optionList">' + questions[index].options[3] + '<span></span></div>';
-    queText.innerHTML = queTag;
-    optionList.innerHTML = optionTag;
-}
-*/
 
 // questions array
 var questions = [
@@ -79,10 +29,10 @@ var questions = [
         question: "Inside which HTML element do we put the JavaScript?",
         answer: "<script>",
         options: [
-            "<script>",
-            "<scripting>",
-            "<javascript>",
-            "<js>"
+            "&lt;script&gt;",
+            "&lt;scripting&gt;",
+            "&lt;javascript&gt;",
+            "&lt;js&gt;"
         ]
     },
     {
@@ -185,6 +135,85 @@ var questions = [
         ]
     },
 ];
+
+function showQuestions(index) {
+    var queText = document.querySelector(".queText");
+    var optionList = document.querySelector(".optionList");
+    var queTag = '<span>' + questions[index].question + '</span>';
+    var optionTag = '<button class="btn btn-primary  answerBtn">' + questions[index].options[0] + '</button>'
+        + '<button class="btn btn-primary answerBtn">' + questions[index].options[1] + '</button>'
+        + '<button class="btn btn-primary answerBtn">' + questions[index].options[2] + '</button>'
+        + '<button class="btn btn-primary answerBtn">' + questions[index].options[3] + '</button>';
+    queText.innerHTML = queTag;
+    console.log(optionTag);
+    optionList.innerHTML = optionTag;
+
+    document.querySelectorAll(".answerBtn").forEach(function (button) {
+        button.addEventListener("click", function () {
+            if (button === questions[index].answer) {
+                score++;
+                console.log(score);
+                alert("correct");
+            }
+            else {
+                alert("incorrect");
+                // minus time
+            }
+            queCount++;
+            showQuestions(queCount);
+            console.log(queCount);
+            console.log(button);
+            console.log(questions[index].answer);
+            // when button clicked - ?right/wrong
+            // if wrong, minus time
+            // if correct, add score
+            // move to next question queCount
+            // showQuestion()
+        })
+    });
+
+
+    // for (var i = 0; i < questions.length; i++) {
+    //     var response = questions[i].options;
+    //     if (response == questions[i].answer) {
+    //         score++;
+    //         alert("Correct!");
+    //     } else {
+    //         alert("Incorrect");
+    //     }
+    // }
+    // alert("You got " + score + "/" + questions.length);
+    // console.log(response)
+}
+
+// function showQuestions(index) {
+//     for (var i = 0; i < questions.length; i++) {
+//         var response = window.questions(questions[i].question);
+//         if (response == questions[i].answer) {
+//             score++;
+//             alert("Correct!");
+//         } else {
+//             alert("Incorrect");
+//         }
+//     }
+// }
+
+/*
+// getting questions and answers from array
+function showQuestions(index) {
+    var queText = document.querySelector(".queText");
+    var optionList = document.querySelector(".optionList");
+    let queTag = '<span>' + questions[index].question + '</span>';
+    let optionTag = '<div class="optionList">' + questions[index].options[0] + '<label></label></div>'
+        + '<div class="optionList">' + questions[index].options[1] + '<span></span></div>'
+        + '<div class="optionList">' + questions[index].options[2] + '<span></span></div>'
+        + '<div class="optionList">' + questions[index].options[3] + '<span></span></div>';
+    queText.innerHTML = queTag;
+    optionList.innerHTML = optionTag;
+}
+*/
+
+
 
 
 
