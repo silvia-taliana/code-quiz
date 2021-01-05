@@ -1,42 +1,14 @@
+// global variables
 var startButton = document.querySelector("#startButton");
 var quizBox = document.querySelector(".quizBox");
 var startPage = document.querySelector(".startPage");
-// var options = document.querySelector(".quizBox .optionList .btn")
-
-
-
-// when start button clicked
-startButton.addEventListener("click", () => {
-    quizBox.classList.add("activeQuiz");
-    startPage.style.visibility = "hidden";
-    showQuestions(0);
-})
-
-
 var queCount = 0;
 var score = 0;
-var btn = quizBox.querySelector(".optionList .btn");
-
-// btn.onclick = () => {
-//     queCount++;
-//     showQuestions(queCount);
-// }
+// var btn = quizBox.querySelector(".optionList .btn");
 
 // questions array
 var questions = [
     {
-        numb: 1,
-        question: "Inside which HTML element do we put the JavaScript?",
-        answer: "<script>",
-        options: [
-            "&lt;script&gt;",
-            "&lt;scripting&gt;",
-            "&lt;javascript&gt;",
-            "&lt;js&gt;"
-        ]
-    },
-    {
-        numb: 2,
         question: "How do you write \"Hello World\" in an alert box?",
         answer: "alert(\"Hello World\");",
         options: [
@@ -47,7 +19,6 @@ var questions = [
         ]
     },
     {
-        numb: 3,
         question: "How do you create a function in JavaScript?",
         answer: "function myFunction()",
         options: [
@@ -58,7 +29,6 @@ var questions = [
         ]
     },
     {
-        numb: 4,
         question: "How do you write an IF statement for executing some code if i is NOT equal to 5?",
         answer: "if (i != 5)",
         options: [
@@ -69,18 +39,6 @@ var questions = [
         ]
     },
     {
-        numb: 5,
-        question: "How does a FOR loop start?",
-        answer: "for (i = 0; i <= 5; i++)",
-        options: [
-            "for (i = 0; i <= 5)",
-            "for i = 1 to 5",
-            "for (i <= 5; i++)",
-            "for (i = 0; i <= 5; i++)"
-        ]
-    },
-    {
-        numb: 6,
         question: "How do you declare a JavaScript variable?",
         answer: "var carName;",
         options: [
@@ -91,7 +49,6 @@ var questions = [
         ]
     },
     {
-        numb: 7,
         question: "Which operator is used to assign a value to a variable?",
         answer: "=",
         options: [
@@ -102,7 +59,6 @@ var questions = [
         ]
     },
     {
-        numb: 8,
         question: "What is the correct way to write a JavaScript array?",
         answer: "var colors = [\"red\", \"green\", \"blue\"]",
         options: [
@@ -113,7 +69,6 @@ var questions = [
         ]
     },
     {
-        numb: 9,
         question: "Which event occurs when the user clicks on an HTML element?",
         answer: "onclick",
         options: [
@@ -124,7 +79,6 @@ var questions = [
         ]
     },
     {
-        numb: 10,
         question: "What will the following code return: Boolean(10 > 9)",
         answer: "true",
         options: [
@@ -136,7 +90,16 @@ var questions = [
     },
 ];
 
+// when start button clicked, quiz questions show and start page is hidden
+startButton.addEventListener("click", () => {
+    quizBox.classList.add("activeQuiz");
+    startPage.style.visibility = "hidden";
+    showQuestions(0);
+})
+
+// function rotates through each question 
 function showQuestions(index) {
+    // query selectors call on the questions and answer buttons
     var queText = document.querySelector(".queText");
     var optionList = document.querySelector(".optionList");
     var queTag = '<span>' + questions[index].question + '</span>';
@@ -145,12 +108,11 @@ function showQuestions(index) {
         + '<button class="btn btn-primary answerBtn">' + questions[index].options[2] + '</button>'
         + '<button class="btn btn-primary answerBtn">' + questions[index].options[3] + '</button>';
     queText.innerHTML = queTag;
-    console.log(optionTag);
     optionList.innerHTML = optionTag;
 
     document.querySelectorAll(".answerBtn").forEach(function (button) {
         button.addEventListener("click", function () {
-            if (button === questions[index].answer) {
+            if (button.innerHTML === questions[index].answer) {
                 score++;
                 console.log(score);
                 alert("correct");
@@ -161,8 +123,7 @@ function showQuestions(index) {
             }
             queCount++;
             showQuestions(queCount);
-            console.log(queCount);
-            console.log(button);
+            console.log(button.innerHTML);
             console.log(questions[index].answer);
             // when button clicked - ?right/wrong
             // if wrong, minus time
