@@ -119,11 +119,11 @@ function showQuestions(index) {
             if (button.innerHTML === questions[index].answer) {
                 score++;
                 console.log(score);
-                alert("correct");
+                // alert("correct");
             }
             // when the user selects the incorrect answer
             else {
-                alert("incorrect");
+                // alert("incorrect");
                 // minus time
             }
             queCount++;
@@ -135,6 +135,7 @@ function showQuestions(index) {
             else {
                 // if it is the last question, the showInitials function starts
                 entrInitials();
+                localStorage.setItem("mostRecentScore", score);
             }
         });
     });
@@ -152,17 +153,19 @@ function entrInitials(event) {
     alert("You got " + score + "/" + questions.length);
 }
 
-const initials = document.getElementById("enterInitials");
-const enterBtn = document.getElementById("enterBtn");
-const finalScore = document.getElementById('finalScore');
+const initials = document.getElementById("initials");
+const saveScoreBtn = document.getElementById("saveScoreBtn");
+const finalScore = document.getElementById("finalScore");
 const mostRecentScore = localStorage.getItem("mostRecentScore");
+
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-// finalScore.innerText = mostRecentScore;
+finalScore.innerText = "Your final score is " + mostRecentScore;
 
-// initials.addEventListener("keyup", () => {
-//     enterBtn.disabled = !initials.value;
-// });
+initials.addEventListener("keyup", () => {
+    console.log(initials.value);
+    saveScoreBtn.disabled = !initials.value;
+});
 
 saveHighScore = (e) => {
     e.preventDefault();
@@ -172,13 +175,18 @@ saveHighScore = (e) => {
         score: mostRecentScore,
         name: initials.value,
     };
-}
-/*   highScores.push(score);
-   highScores.sort((a, b) => b.score - a.score);
+    console.log(score);
+    highScores.push(score);
+    console.log(highScores);
 
-   localStorage.setItem('highScores', JSON.stringify(highScores));
-   window.location.assign('/');
+    highScores.sort((a, b) => b.score - a.score)
+};
 
-   console.log(highScores);
+/*
+
+localStorage.setItem('highScores', JSON.stringify(highScores));
+window.location.assign('/');
+
+console.log(highScores);
 };
 console.log(initials); */
