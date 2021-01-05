@@ -133,7 +133,7 @@ function showQuestions(index) {
                 console.log(queCount);
             }
             else {
-                // if it is the last question, the showInitials function starts
+                // at the last Q, score is stored and showInitials function starts
                 localStorage.setItem("mostRecentScore", score);
                 entrInitials();
             }
@@ -143,48 +143,59 @@ function showQuestions(index) {
 
 // user enters their initials here, quiz is hidden, timer stops 
 function entrInitials(event) {
-    // var initials = document.getElementById("#enterInitials");
-    // var enterBtn = document.getElementById("#enterBtn");
-    // addEventListener("click", function(){
-
-    // })
     var endPage = document.getElementById("end").style.display = "block";
     quizBox.style.display = "none";
     alert("You got " + score + "/" + questions.length);
-}
 
-const initials = document.getElementById("initials");
-const saveScoreBtn = document.getElementById("saveScoreBtn");
-const finalScore = document.getElementById("finalScore");
-const mostRecentScore = localStorage.getItem("mostRecentScore");
+    const initials = document.getElementById("initials");
+    const saveScoreBtn = document.getElementById("saveScoreBtn");
+    const finalScore = document.getElementById("finalScore");
 
-const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    // score is retrieved from local storage 
+    const mostRecentScore = localStorage.getItem("mostRecentScore");
 
-const maxHighScores = 5;
+    // highscore is retrieved and converted to an array
+    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-finalScore.innerText = "Your final score is " + mostRecentScore;
+    //max amount of highscores that can be displayed
+    const maxHighScores = 5;
 
-initials.addEventListener("keyup", () => {
-    console.log(initials.value);
-    saveScoreBtn.disabled = !initials.value;
-});
+    //displaying final score on screen
+    finalScore.innerText = "Your final score is " + mostRecentScore;
 
-saveHighScore = (e) => {
-    e.preventDefault();
-    console.log("save button clicked")
+    //storing users initials in the form
+    initials.addEventListener("keyup", () => {
+        console.log(initials.value);
+        //save button disabled unless user enters their initials
+        saveScoreBtn.disabled = !initials.value;
+    });
 
-    const score = {
-        score: mostRecentScore,
-        name: initials.value,
+    //calling click event for save button 
+    saveHighScore = (e) => {
+        e.preventDefault();
+        console.log("save button clicked")
+
+        //defining score
+        const score = {
+            score: mostRecentScore,
+            name: initials.value,
+        };
+        console.log(score);
+
+        //storing the score 
+        highScores.push(score);
+        console.log(highScores);
+        //sorting the score in order of high to low
+        highScores.sort((a, b) => b.score - a.score)
+        //removing lowest scores if more than 5 are stored
+        highScores.splice(5);
+
+        //storing highscores to a string in local storage
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+
+        // go to high score page 
     };
-    console.log(score);
-    highScores.push(score);
-    console.log(highScores);
-    highScores.sort((a, b) => b.score - a.score)
-    highScores.splice(5);
-
-    localStorage.setItem('highScores', JSON.stringify(highScores));
-    // go to high score page 
 };
+
 
 
