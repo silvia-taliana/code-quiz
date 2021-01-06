@@ -5,7 +5,6 @@ var startPage = document.querySelector(".startPage");
 var queCount = 0;
 var score = 0;
 var highScoresList = document.getElementById("highScoresList");
-// var btn = quizBox.querySelector(".optionList .btn");
 
 // questions array
 var questions = [
@@ -96,7 +95,28 @@ startButton.addEventListener("click", () => {
     quizBox.classList.add("activeQuiz");
     startPage.style.visibility = "hidden";
     showQuestions(0);
+    startTimer();
 })
+
+function startTimer(e) {
+    const startingMinutes = 2;
+    let time = startingMinutes * 60;
+
+    const countdownEl = document.getElementById("countdown");
+
+    setInterval(updateCountdown, 1000);
+
+    function updateCountdown() {
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        countdownEl.innerHTML = `${minutes}:${seconds}`
+        time--;
+    }
+
+}
 
 // function rotates through each question 
 function showQuestions(index) {
@@ -200,10 +220,9 @@ function entrInitials(e) {
         showHighScores();
     });
 
-    // add click event somewhere here to save score and THEN bring up score list!
-
+    //high score page
     function showHighScores(e) {
-
+        //changing style to hide enter initials page and show high score page 
         var lastPage = document.getElementById("lastPage").style.display = "block";
         var endPage = document.getElementById("end").style.display = "none";
 

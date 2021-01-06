@@ -42,7 +42,7 @@ sure why yet */
     margin: 10px;
 }
 
-.timer .timerSec {
+.timer #countdown {
     margin: 10px;
 }
 
