@@ -4,6 +4,7 @@ var quizBox = document.querySelector(".quizBox");
 var startPage = document.querySelector(".startPage");
 var queCount = 0;
 var score = 0;
+var highScoresList = document.getElementById("highScoresList");
 // var btn = quizBox.querySelector(".optionList .btn");
 
 // questions array
@@ -142,7 +143,7 @@ function showQuestions(index) {
 }
 
 // user enters their initials here, quiz is hidden, timer stops 
-function entrInitials(event) {
+function entrInitials(e) {
     var endPage = document.getElementById("end").style.display = "block";
     quizBox.style.display = "none";
     alert("You got " + score + "/" + questions.length);
@@ -155,7 +156,7 @@ function entrInitials(event) {
     const mostRecentScore = localStorage.getItem("mostRecentScore");
 
     // highscore is retrieved and converted to an array
-    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
     //max amount of highscores that can be displayed
     const maxHighScores = 5;
@@ -176,10 +177,11 @@ function entrInitials(event) {
         console.log("save button clicked")
 
         //defining score
-        const score = {
+        var score = {
             score: mostRecentScore,
             name: initials.value,
         };
+        window.localStorage.setItem('score', JSON.stringify(score));
         console.log(score);
 
         //storing the score 
@@ -191,11 +193,31 @@ function entrInitials(event) {
         highScores.splice(5);
 
         //storing highscores to a string in local storage
-        localStorage.setItem('highScores', JSON.stringify(highScores));
-
-        // go to high score page 
+        window.localStorage.setItem('highScores', JSON.stringify(highScores));
     };
+    // go to high score page
+    saveScoreBtn.addEventListener("click", () => {
+        showHighScores();
+    });
+
+    // add click event somewhere here to save score and THEN bring up score list!
+
+    function showHighScores(e) {
+
+        var lastPage = document.getElementById("lastPage").style.display = "block";
+        var endPage = document.getElementById("end").style.display = "none";
+
+        const highScoresList = document.getElementById("highScoresList");
+
+        const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+        const score = JSON.parse(localStorage.getItem("mostRecentScore")) || [];
+        console.log(score);
+
+        highScoresList.innerHTML =
+            highScores.map(score => {
+                return `<li class="high-score">${score.name}-${score.score}</li>`;
+            }).join("");
+    }
+
 };
-
-
 

@@ -91,3 +91,7 @@ sure why yet */
 #end {
     display:none;
 }
+
+#lastPage {
+    display:none;
+}
