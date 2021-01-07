@@ -1,5 +1,6 @@
 // global variables
 var startButton = document.querySelector("#startButton");
+var viewHighScore = document.getElementById("viewHighScore");
 var goBack = document.getElementById("goBack");
 var clearScore = document.getElementById("clearScore");
 var quizBox = document.querySelector(".quizBox");
@@ -137,6 +138,7 @@ function setTimer() {
             alert("Time out!");
             document.getElementById("timeText").style.display = "none";
             document.getElementById("countdown").style.display = "none";
+            entrInitials();
         };
     };
 };
@@ -247,28 +249,40 @@ function entrInitials(e) {
     saveScoreBtn.addEventListener("click", () => {
         showHighScores();
     });
-
-    //high score page
-    function showHighScores(e) {
-        //changing style to hide enter initials page and show high score page 
-        var lastPage = document.getElementById("lastPage").style.display = "block";
-        var endPage = document.getElementById("end").style.display = "none";
-        var header = document.getElementById("viewHighScore").style.display = "none";
-
-        const highScoresList = document.getElementById("highScoresList");
-
-        const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
-        const score = JSON.parse(localStorage.getItem("mostRecentScore")) || [];
-        console.log(score);
-
-        highScoresList.innerHTML =
-            highScores.map(score => {
-                return `<li class="high-score">${score.name}-${score.score}</li>`;
-            }).join("");
-    };
 };
+
+//high score page
+function showHighScores(e) {
+    //changing style to hide enter initials page and show high score page 
+    document.getElementById("lastPage").style.display = "block";
+    document.getElementById("end").style.display = "none";
+    document.getElementById("viewHighScore").style.display = "none";
+
+    const highScoresList = document.getElementById("highScoresList");
+
+    const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+    const score = JSON.parse(localStorage.getItem("mostRecentScore")) || [];
+    console.log(score);
+
+    highScoresList.innerHTML =
+        highScores.map(score => {
+            return `<li class="high-score">${score.name}-${score.score}</li>`;
+        }).join("");
+};
+
 
 //go back button returns to beginning of quiz
 goBack.addEventListener("click", () => {
     location.reload();
+});
+
+//viewing and clearing highscores
+viewHighScore.addEventListener("click", () => {
+    showHighScores();
+    document.querySelector(".allQuizElements").style.display = "none";
+});
+
+clearScore.addEventListener("click", () => {
+    localStorage.clear();
+    highScoresList.style.display = "none";
 });
