@@ -115,25 +115,29 @@ startButton.addEventListener("click", () => {
 //timer function
 function setTimer() {
     const countdownEl = document.getElementById("countdown");
-
+    //setting timer function to start every second 
     var counter = setInterval(startTimer, 1000);
 
+    //timer function set to minutes and seconds
     function startTimer() {
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
 
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
+        //timer will minus one second every second and stops at 0
         countdownEl.innerHTML = `${minutes}:${seconds}`
         time--;
         time = time < 0 ? 0 : time;
 
+        //when timer reaches 0, timeout function starts after 2 seconds
+        //because alert appears to early otherwise 
         if (time <= 0) {
             clearInterval(counter);
             var timeout = setTimeout(timeout, 2000);
-            // document.getElementById("timeout").style.display = "block";
         }
 
+        //alerting user time has run out and moving them to the end page 
         function timeout() {
             alert("Time out!");
             document.getElementById("timeText").style.display = "none";
@@ -164,7 +168,6 @@ function showQuestions(index) {
             // when the user selects the correct answer
             if (button.innerHTML === questions[index].answer) {
                 score++;
-                console.log(score);
                 document.getElementById("correct").style.display = "block";
                 document.getElementById("incorrect").style.display = "none";
             }
@@ -178,7 +181,6 @@ function showQuestions(index) {
             // loop to see when the user gets to the last question 
             if (queCount < questions.length) {
                 showQuestions(queCount);
-                console.log(queCount);
             }
             else {
                 // at the last Q, score is stored and entrInitials function starts
@@ -224,7 +226,6 @@ function entrInitials(e) {
     //calling click event for save button 
     saveHighScore = (e) => {
         e.preventDefault();
-        console.log("save button clicked")
 
         //defining score
         var score = {
@@ -236,7 +237,6 @@ function entrInitials(e) {
 
         //storing the score 
         highScores.push(score);
-        console.log(highScores);
         //sorting the score in order of high to low
         highScores.sort((a, b) => b.score - a.score)
         //removing lowest scores if more than 5 are stored
@@ -260,10 +260,11 @@ function showHighScores(e) {
 
     const highScoresList = document.getElementById("highScoresList");
 
+    //turning stored items from a string into an array 
     const highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
     const score = JSON.parse(localStorage.getItem("mostRecentScore")) || [];
-    console.log(score);
 
+    //setting each list item to show users initials and score
     highScoresList.innerHTML =
         highScores.map(score => {
             return `<li class="high-score">${score.name}-${score.score}</li>`;
