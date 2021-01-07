@@ -1,14 +1,19 @@
 // global variables
 var startButton = document.querySelector("#startButton");
+var goBack = document.getElementById("goBack");
+var clearScore = document.getElementById("clearScore");
 var quizBox = document.querySelector(".quizBox");
 var startPage = document.querySelector(".startPage");
 var queCount = 0;
 var score = 0;
 var highScoresList = document.getElementById("highScoresList");
+var startingMinutes = 1;
+let time = startingMinutes * 60;
 
 // questions array
 var questions = [
     {
+        numb: 1,
         question: "How do you write \"Hello World\" in an alert box?",
         answer: "alert(\"Hello World\");",
         options: [
@@ -19,6 +24,7 @@ var questions = [
         ]
     },
     {
+        numb: 2,
         question: "How do you create a function in JavaScript?",
         answer: "function myFunction()",
         options: [
@@ -29,6 +35,7 @@ var questions = [
         ]
     },
     {
+        numb: 3,
         question: "How do you write an IF statement for executing some code if i is NOT equal to 5?",
         answer: "if (i != 5)",
         options: [
@@ -39,6 +46,7 @@ var questions = [
         ]
     },
     {
+        numb: 4,
         question: "How do you declare a JavaScript variable?",
         answer: "var carName;",
         options: [
@@ -49,6 +57,7 @@ var questions = [
         ]
     },
     {
+        numb: 5,
         question: "Which operator is used to assign a value to a variable?",
         answer: "=",
         options: [
@@ -59,6 +68,7 @@ var questions = [
         ]
     },
     {
+        numb: 6,
         question: "What is the correct way to write a JavaScript array?",
         answer: "var colors = [\"red\", \"green\", \"blue\"]",
         options: [
@@ -69,6 +79,7 @@ var questions = [
         ]
     },
     {
+        numb: 7,
         question: "Which event occurs when the user clicks on an HTML element?",
         answer: "onclick",
         options: [
@@ -79,6 +90,7 @@ var questions = [
         ]
     },
     {
+        numb: 8,
         question: "What will the following code return: Boolean(10 > 9)",
         answer: "true",
         options: [
@@ -91,22 +103,21 @@ var questions = [
 ];
 
 // when start button clicked, quiz questions show and start page is hidden
+// and timer is started 
 startButton.addEventListener("click", () => {
     quizBox.classList.add("activeQuiz");
     startPage.style.visibility = "hidden";
     showQuestions(0);
-    startTimer();
-})
+    setTimer();
+});
 
-function startTimer(e) {
-    const startingMinutes = 2;
-    let time = startingMinutes * 60;
-
+//timer function
+function setTimer() {
     const countdownEl = document.getElementById("countdown");
 
-    setInterval(updateCountdown, 1000);
+    var counter = setInterval(startTimer, 1000);
 
-    function updateCountdown() {
+    function startTimer() {
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
 
@@ -114,9 +125,21 @@ function startTimer(e) {
 
         countdownEl.innerHTML = `${minutes}:${seconds}`
         time--;
-    }
+        time = time < 0 ? 0 : time;
 
-}
+        if (time <= 0) {
+            clearInterval(counter);
+            var timeout = setTimeout(timeout, 2000);
+            // document.getElementById("timeout").style.display = "block";
+        }
+
+        function timeout() {
+            alert("Time out!");
+            document.getElementById("timeText").style.display = "none";
+            document.getElementById("countdown").style.display = "none";
+        };
+    };
+};
 
 // function rotates through each question 
 function showQuestions(index) {
@@ -140,12 +163,14 @@ function showQuestions(index) {
             if (button.innerHTML === questions[index].answer) {
                 score++;
                 console.log(score);
-                // alert("correct");
+                document.getElementById("correct").style.display = "block";
+                document.getElementById("incorrect").style.display = "none";
             }
             // when the user selects the incorrect answer
             else {
-                // alert("incorrect");
-                // minus time
+                time = time - 10;
+                document.getElementById("incorrect").style.display = "block";
+                document.getElementById("correct").style.display = "none";
             }
             queCount++;
             // loop to see when the user gets to the last question 
@@ -154,18 +179,21 @@ function showQuestions(index) {
                 console.log(queCount);
             }
             else {
-                // at the last Q, score is stored and showInitials function starts
+                // at the last Q, score is stored and entrInitials function starts
                 localStorage.setItem("mostRecentScore", score);
                 entrInitials();
             }
         });
     });
-}
+};
 
 // user enters their initials here, quiz is hidden, timer stops 
 function entrInitials(e) {
     var endPage = document.getElementById("end").style.display = "block";
     quizBox.style.display = "none";
+    document.getElementById("timeText").style.display = "none";
+    document.getElementById("countdown").style.display = "none";
+    // document.getElementById("timeout").style.display = "none";
     alert("You got " + score + "/" + questions.length);
 
     const initials = document.getElementById("initials");
@@ -225,6 +253,7 @@ function entrInitials(e) {
         //changing style to hide enter initials page and show high score page 
         var lastPage = document.getElementById("lastPage").style.display = "block";
         var endPage = document.getElementById("end").style.display = "none";
+        var header = document.getElementById("viewHighScore").style.display = "none";
 
         const highScoresList = document.getElementById("highScoresList");
 
@@ -236,7 +265,10 @@ function entrInitials(e) {
             highScores.map(score => {
                 return `<li class="high-score">${score.name}-${score.score}</li>`;
             }).join("");
-    }
-
+    };
 };
 
+//go back button returns to beginning of quiz
+goBack.addEventListener("click", () => {
+    location.reload();
+});

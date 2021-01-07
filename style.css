@@ -2,6 +2,7 @@
 it until ready to be shown, afterwards was changed to opacity: 0; not 
 sure why yet */
 
+/* opening screen */
 .startPage {
     position: absolute;
     top: 30%;
@@ -19,6 +20,8 @@ sure why yet */
     text-align: center;
     font-size: 20px;
 }
+
+/* start button */
 .startPage #startButton button {
     position: relative;
     left: 50%;
@@ -27,25 +30,32 @@ sure why yet */
     margin-top: 10px;
 }
 
-.viewHighScore {
+/* header with high score button and timer */
+#viewHighScore {
     position: relative;
     float: left;
+    display: block;
 }
 
-.timer {
+#timer {
     position: relative;
     display: flex;
     justify-content: flex-end;
 }
 
-.timer .timeText {
+#timer #timeText {
     margin: 10px;
 }
 
-.timer #countdown {
+#timer #countdown {
     margin: 10px;
 }
 
+#timeout {
+    display: none;
+}
+
+/* quiz questions */
 .quizBox.activeQuiz{
     z-index: 5;
     opacity: 1;
@@ -85,6 +95,18 @@ sure why yet */
 
 .quizBox .answer span {
     font-size: 20px;
+    animation-duration: marks 2s;
+    animation-timing-function: marks ease-out;
+    display: none;
+}
+
+@keyframes marks {
+    100% {
+        opacity: 0;
+    }
+    0% {
+        opacity: 1;
+    }
 }
 
 /* end page form */
@@ -92,6 +114,7 @@ sure why yet */
     display:none;
 }
 
+/* high score page */
 #lastPage {
     display:none;
 }

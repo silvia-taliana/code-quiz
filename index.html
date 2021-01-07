@@ -24,10 +24,11 @@
     </div>
 
     <header>
-        <div class="viewHighScore"><button>View Highscores</button></div>
-        <div class="timer">
-            <div class="timeText">Time Left</div>
-            <div id="countdown">2:00</div>
+        <div id="viewHighScore"><button>View Highscores</button></div>
+        <div id="timer">
+            <div id="timeText">Time Left</div>
+            <div id="countdown">1:00</div>
+            <!-- <div id="timeout">Time Out!</div> -->
         </div>
     </header>
 
@@ -43,19 +44,17 @@
                 <button class="btn">Answer D</button>
             </div>
         </section>
-        <!-- <section>
+        <section>
             <div class="answer">
-                <span>Correct!</span>
-                <span>Incorrect!</span>
+                <span id="correct">Correct!</span>
+                <span id="incorrect">Incorrect!</span>
             </div>
-        </section> -->
+        </section>
     </div>
 
     <div id="end">
         <!-- end of quiz page, user imputs initials -->
         <h1 id="finalScore"></h1>
-        <!-- <h2>All Done!</h2>
-        <p>Your final score is: </p> -->
         <form>
             <input type="text" name="initials" id="initials" />
             <button type="submit" class="btn" id="saveScoreBtn" onclick="saveHighScore(event)" disabled>
@@ -70,8 +69,8 @@
         <h2>Highscores</h2>
         <!-- scores will show here alongside initials in list form -->
         <ol id="highScoresList"></ol>
-        <button>Go Back</button>
-        <button>Clear Highscores</button>
+        <button id="goBack">Go Back</button>
+        <button id="clearScore">Clear Highscores</button>
     </div>
 
     <!-- javascript links -->
