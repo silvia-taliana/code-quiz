@@ -16,89 +16,89 @@ var questions = [
     {
         numb: 1,
         question: "How do you write \"Hello World\" in an alert box?",
-        answer: "alert(\"Hello World\");",
+        answer: "3. alert(\"Hello World\");",
         options: [
-            "msgBox(\"Hello World\");",
-            "alertBox(\"Hello World\");",
-            "alert(\"Hello World\");",
-            "msg(\"Hello World\");"
+            "1. msgBox(\"Hello World\");",
+            "2. alertBox(\"Hello World\");",
+            "3. alert(\"Hello World\");",
+            "4. msg(\"Hello World\");"
         ]
     },
     {
         numb: 2,
         question: "How do you create a function in JavaScript?",
-        answer: "function myFunction()",
+        answer: "1. function myFunction()",
         options: [
-            "function myFunction()",
-            "function = myFunction()",
-            "function:myFunction()",
-            "myFunction()"
+            "1. function myFunction()",
+            "2. function = myFunction()",
+            "3. function:myFunction()",
+            "4. myFunction()"
         ]
     },
     {
         numb: 3,
         question: "How do you write an IF statement for executing some code if i is NOT equal to 5?",
-        answer: "if (i != 5)",
+        answer: "3. if (i != 5)",
         options: [
-            "if i <> 5",
-            "if (i <> 5)",
-            "if (i != 5)",
-            "if i =! 5 then"
+            "1. if i <> 5",
+            "2. if (i <> 5)",
+            "3. if (i != 5)",
+            "4. if i =! 5 then"
         ]
     },
     {
         numb: 4,
         question: "How do you declare a JavaScript variable?",
-        answer: "var carName;",
+        answer: "3. var carName;",
         options: [
-            "variable carName;",
-            "v carName;",
-            "var carName;",
-            "addvariable carName;"
+            "1. variable carName;",
+            "2. v carName;",
+            "3. var carName;",
+            "4. addvariable carName;"
         ]
     },
     {
         numb: 5,
         question: "Which operator is used to assign a value to a variable?",
-        answer: "=",
+        answer: "4. =",
         options: [
-            "x",
-            "*",
-            "-",
-            "="
+            "1. x",
+            "2. *",
+            "3. -",
+            "4. ="
         ]
     },
     {
         numb: 6,
         question: "What is the correct way to write a JavaScript array?",
-        answer: "var colors = [\"red\", \"green\", \"blue\"]",
+        answer: "3. var colors = [\"red\", \"green\", \"blue\"]",
         options: [
-            "var colors = (1:\"red\", 2:\"green\", 3:\"blue\")",
-            "var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")",
-            "var colors = [\"red\", \"green\", \"blue\"]",
-            "var colors = \"red\", \"green\", \"blue\""
+            "1. var colors = (1:\"red\", 2:\"green\", 3:\"blue\")",
+            "2. var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")",
+            "3. var colors = [\"red\", \"green\", \"blue\"]",
+            "4. var colors = \"red\", \"green\", \"blue\""
         ]
     },
     {
         numb: 7,
         question: "Which event occurs when the user clicks on an HTML element?",
-        answer: "onclick",
+        answer: "1. onclick",
         options: [
-            "onclick",
-            "onmouseclick",
-            "onchange",
-            "onmouseover"
+            "1. onclick",
+            "2. onmouseclick",
+            "3. onchange",
+            "4. onmouseover"
         ]
     },
     {
         numb: 8,
         question: "What will the following code return: Boolean(10 > 9)",
-        answer: "true",
+        answer: "2. true",
         options: [
-            "false",
-            "true",
-            "NaN",
-            "null"
+            "1. false",
+            "2. true",
+            "3. NaN",
+            "4. null"
         ]
     },
 ];
@@ -193,11 +193,10 @@ function showQuestions(index) {
 
 // user enters their initials here, quiz is hidden, timer stops 
 function entrInitials(e) {
-    var endPage = document.getElementById("end").style.display = "block";
+    document.getElementById("end").style.display = "grid";
     quizBox.style.display = "none";
     document.getElementById("timeText").style.display = "none";
     document.getElementById("countdown").style.display = "none";
-    // document.getElementById("timeout").style.display = "none";
     alert("You got " + score + "/" + questions.length);
 
     const initials = document.getElementById("initials");
