@@ -112,11 +112,13 @@ startButton.addEventListener("click", () => {
     setTimer();
 });
 
+var counter;
+
 //timer function
 function setTimer() {
     const countdownEl = document.getElementById("countdown");
     //setting timer function to start every second 
-    var counter = setInterval(startTimer, 1000);
+    counter = setInterval(startTimer, 1000);
 
     //timer function set to minutes and seconds
     function startTimer() {
@@ -129,9 +131,10 @@ function setTimer() {
         countdownEl.innerHTML = `${minutes}:${seconds}`
         time--;
         time = time < 0 ? 0 : time;
+        console.log(time);
 
         //when timer reaches 0, timeout function starts after 2 seconds
-        //because alert appears to early otherwise 
+        //because alert appears too early otherwise 
         if (time <= 0) {
             clearInterval(counter);
             var timeout = setTimeout(timeout, 2000);
@@ -186,13 +189,14 @@ function showQuestions(index) {
                 // at the last Q, score is stored and entrInitials function starts
                 localStorage.setItem("mostRecentScore", score);
                 entrInitials();
+                clearTimeout(counter);
             }
         });
     });
 };
 
 // user enters their initials here, quiz is hidden, timer stops 
-function entrInitials(e) {
+function entrInitials() {
     document.getElementById("end").style.display = "grid";
     quizBox.style.display = "none";
     document.getElementById("timeText").style.display = "none";
