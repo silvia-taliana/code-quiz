@@ -187,9 +187,23 @@ function showQuestions(index) {
             }
             else {
                 // at the last Q, score is stored and entrInitials function starts
-                localStorage.setItem("mostRecentScore", score);
-                entrInitials();
-                clearTimeout(counter);
+                saveScore(score);
+            }
+
+            // function to ensure if last score is zero then it saves as zero rather
+            // than saving the previous score 
+            function saveScore(score) {
+                if (score === 0) {
+                    score = 0;
+                    localStorage.setItem("mostRecentScore", score);
+                    entrInitials();
+                    clearTimeout(counter);
+                }
+                else {
+                    localStorage.setItem("mostRecentScore", score);
+                    entrInitials();
+                    clearTimeout(counter);
+                }
             }
         });
     });
